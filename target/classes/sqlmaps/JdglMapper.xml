@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bwie.wyy.mapper.JdglMapper" >
+	<select id="login" resultType="com.bwie.wyy.entity.User">
+		select * from jd_e where uname=#{uname} and pwd=#{pwd}
+	</select>
+	
+	<select id="shu" resultType="com.bwie.wyy.entity.Jdgl">
+		select * from jd_d
+	</select>
+	
+	<select id="list" resultType="com.bwie.wyy.entity.Jdgl">
+		SELECT a.*,b.fname,c.fjztname FROM jd_a a LEFT JOIN jd_b b ON a.fid=b.fid LEFT JOIN jd_c c ON a.fjztid=c.fjztid
+	</select>
+	
+	<select id="flist" resultType="com.bwie.wyy.entity.Jdgl">
+		select * from jd_b
+	</select>
+	
+	<select id="fjztlist" resultType="com.bwie.wyy.entity.Jdgl">
+		select * from jd_c
+	</select>
+	
+	<insert id="add">
+		insert into jd_a set fid=#{fid},lc=#{lc},fjztid=#{fjztid},fjjg=#{fjjg},img=#{img}
+	</insert>
+	
+	<update id="update">
+		update jd_a set fid=#{fid},lc=#{lc},fjztid=#{fjztid},fjjg=#{fjjg},img=#{img} where id=#{id}
+	</update>
+	
+	<delete id="del">
+		delete from jd_a where id in (${ids})
+	</delete>
+</mapper>
